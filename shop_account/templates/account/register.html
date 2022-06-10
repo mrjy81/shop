@@ -1,0 +1,33 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <div class="container">
+        <section id="form"><!--form-->
+            <div class="col-sm-offset-1">
+                <div class="signup-form"><!--sign up form-->
+                    <h2>ثبت نام کاربـر جدیـد</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                        {{ form.username }}
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {% for error in form.username.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+
+                        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                        {{ form.password }}
+                        <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                        {{ form.password2 }}
+                     {% for error in form.password2.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-default">ثبت نام</button>
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </section>
+    </div>
+{% endblock %}
