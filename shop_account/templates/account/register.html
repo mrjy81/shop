@@ -10,9 +10,13 @@
                         {% csrf_token %}
                         <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
                         {{ form.username }}
+                        {% for error in form.username.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+
                         <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                         {{ form.email }}
-                        {% for error in form.username.errors %}
+                        {% for error in form.email.errors %}
                             <p class="text-danger">{{ error }}</p>
                         {% endfor %}
 
@@ -20,7 +24,7 @@
                         {{ form.password }}
                         <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
                         {{ form.password2 }}
-                     {% for error in form.password2.errors %}
+                        {% for error in form.password2.errors %}
                             <p class="text-danger">{{ error }}</p>
                         {% endfor %}
 

@@ -1,4 +1,6 @@
 # Django #
+.idea
+static_cdn
 static-deployment
 *.log
 *.pot

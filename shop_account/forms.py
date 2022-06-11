@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.core.validators import MaxLengthValidator
 
 
 class LoginForm(forms.Form):
@@ -17,7 +18,8 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'لطفا نام کاربری خو را وارد نمایید'}),
-                               label='نام کاربری')
+                               label='نام کاربری',
+                               validators=[MaxLengthValidator(limit_value=20, message='باید کمتر از ۲۰ حرف باشد')])
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'لطفا ایمیل خو را وارد نمایید'}),
                              label='ایمیل')
 
@@ -40,3 +42,5 @@ class RegisterForm(forms.Form):
         if is_exist:
             print(User.objects.filter(username=username).first())
             raise forms.ValidationError('این نام کاربری در دسترس نیست')
+        else:
+            return username

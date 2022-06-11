@@ -11,6 +11,7 @@ urlpatterns = [
     path('footer', footer, name="footer"),
     path('admin/', admin.site.urls),
     path('account/', include('shop_account.urls')),
+    path('products/', include('shop_products.urls')),
 ]
 
 if settings.DEBUG:
