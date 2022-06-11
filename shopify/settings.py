@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     'django_render_partial',
     'shop_account',
     'shop_products',
+    'shop_tags',
+    'shop_products_category',
 ]
 
 MIDDLEWARE = [

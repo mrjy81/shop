@@ -40,7 +40,7 @@
                 <div class="col-sm-4" style="text-align: left;">
                     <div class="logo">
                         <a href="{% url 'home' %}"><img src="{% static 'images/home/logo.png' %}" alt="Logo"
-                                                  style="text-align: center;"/></a>
+                                                        style="text-align: center;"/></a>
                     </div>
                 </div>
 
@@ -66,13 +66,7 @@
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-
-                <div class="col-sm-3">
-                    <div class="search_box pull-left">
-                        <input type="text" placeholder="جستـجو"/>
-                    </div>
-                </div>
-
+                {% include 'shared/search_input_component.html' %}
                 <div class="col-sm-9">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
