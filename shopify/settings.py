@@ -20,6 +20,10 @@ INSTALLED_APPS = [
     'shop_products',
     'shop_tags',
     'shop_products_category',
+    'shopify_contact_us',
+    'siteSetting',
+    'eshop_orders',
+    'sessions_order',
 ]
 
 MIDDLEWARE = [

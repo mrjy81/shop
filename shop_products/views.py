@@ -3,6 +3,8 @@ from django.views.generic import ListView
 from .models import Products
 from django.http import Http404
 from django.db.models import Q
+from shop_tags.models import Tag
+from shop_products_category.models import ProductCategory
 
 
 class ProductListView(ListView):
@@ -30,6 +32,10 @@ def product_detail(request, *args, **kwargs):
     if qs is None or not qs.active:
         raise Http404
 
+    recommended_products = Products.objects.filter(
+        Q(tag__products=qs)
+    )
     context['product'] = qs
+    context['recommended_products'] = recommended_products
 
     return render(request, 'product_detail.html', context)

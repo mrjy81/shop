@@ -1,0 +1,7 @@
+from django.apps import AppConfig
+
+
+class SitesettingConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'siteSetting'
+    verbose_name = 'ماژول تنظیمات سایت'
