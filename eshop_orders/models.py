@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from shop_products.models import Products
+from django.conf import settings
 
 
 class Orders(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_paid = models.BooleanField(default=False)
     payment_date = models.DateTimeField(null=True, blank=True, verbose_name='تاریخ پرداخت')
 

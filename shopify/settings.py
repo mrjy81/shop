@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'eshop_orders',
     'sessions_order',
     'django_seed',
+    'jalali_date',
+    'django_jalali',
 ]
 
 MIDDLEWARE = [
@@ -101,3 +103,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
+
+JALALI_DATE_DEFAULTS = {
+    'Strftime': {
+        'date': '%y/%m/%d',
+        'datetime': '%H:%M:%S _ %y/%m/%d',
+    },
+    'Static': {
+        'js': [
+            # loading datepicker
+            'admin/js/django_jalali.min.js',
+        ],
+        'css': {
+            'all': [
+                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
+            ]
+        }
+    },
+}
+
+AUTH_USER_MODEL = 'shop_account.Account'
