@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'siteSetting',
     'eshop_orders',
     'sessions_order',
+    'django_seed',
 ]
 
 MIDDLEWARE = [

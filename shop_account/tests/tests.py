@@ -2,6 +2,7 @@ from django.test import TestCase, SimpleTestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse, resolve
 from shop_account.views import login_view
+import pytest
 
 
 class TestUrls(SimpleTestCase):
@@ -11,7 +12,7 @@ class TestUrls(SimpleTestCase):
         response = client.get(url)
         self.assertEqual(resolve(url).func, login_view)
         self.assertTemplateUsed(response=response, template_name='account/login.html')
-        self.assertEqual(response.status_code , 200)
+        self.assertEqual(response.status_code, 200)
 
 
 class UserTesting(TestCase):
@@ -20,3 +21,15 @@ class UserTesting(TestCase):
 
     def test_user_is_created(self):
         self.assertEqual(self.obj.username, 'abc', msg='checked')
+
+
+def test_superuser(create_superuser):
+    assert create_superuser.username == 'aabc'
+
+
+def test_staff_user(create_staff_user):
+    assert create_staff_user.username == 'aabc'
+
+
+def test_factory_boy_superuser(factory_boy_superuser):
+    assert factory_boy_superuser.username is not None
