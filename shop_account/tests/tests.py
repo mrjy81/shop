@@ -1,8 +1,10 @@
 from django.test import TestCase, SimpleTestCase, Client
-from django.contrib.auth.models import User
 from django.urls import reverse, resolve
 from shop_account.views import login_view
+from django.contrib.auth import get_user_model
 import pytest
+
+User = get_user_model()
 
 
 class TestUrls(SimpleTestCase):

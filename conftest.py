@@ -1,9 +1,11 @@
 import pytest
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from pytest_factoryboy import register
 from shop_account.tests.factory import UserFactory
 from shop_products.tests.factory import ProductsFactory, CategoriesFactory
 from selenium import webdriver
+
+User = get_user_model()
 
 # method 2 (better class based option)
 register(UserFactory)  # can be accessed user_factory

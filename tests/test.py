@@ -5,13 +5,15 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 import time
 import pytest
 from django_seed import Seed
 from shop_products.models import Products
 from shop_products_category.models import ProductCategory
-from django.contrib.auth.models import User
+
+User = get_user_model()
 
 seeder = Seed.seeder()
 
@@ -43,10 +45,10 @@ class AdminLiveTest(StaticLiveServerTestCase):
         username_input = self.browser.find_element(by=By.NAME, value="username")
         username_input.send_keys('abc')
         password_input = self.browser.find_element(by=By.NAME, value="password")
-        password_input.send_keys('123')
+        password_input.send_keys(123)
         self.browser.find_element(by=By.XPATH, value='//input[@value="ورود"]').click()
         assert 'مدیریت وب‌گاه | مدیریت وب‌گاه Django' in self.browser.title
 
     def test_products(self):
         self.browser.get(self.live_server_url + '/products')
-        time.sleep(10)
+

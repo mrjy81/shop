@@ -6,9 +6,8 @@ from django.utils import timezone
 
 
 class Account(AbstractUser):
-    date_joined = jmodels.jDateTimeField(_('تاریخ پیوستن!!!!!!'), default=timezone.now())
-    last_login =  jmodels.jDateTimeField(_("آخرین بازدید !!!"), blank=True, null=True)
-
+    date_joined = jmodels.jDateTimeField(_('تاریخ پیوستن!!!!!!'), default=timezone.now(), blank=True, null=True)
+    last_login = jmodels.jDateTimeField(_("آخرین بازدید !!!"), blank=True, null=True)
 
     def save(self, *args, **kwargs):
         self.last_login = timezone.now()
