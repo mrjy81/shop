@@ -15,6 +15,7 @@ urlpatterns = [
     path('contact-us/', include('shopify_contact_us.urls')),
     path('site-settings/', include('siteSetting.urls')),
     path('session-orders/', include('sessions_order.urls')),
+    path('cart-orders/', include('eshop_orders.urls')),
 ]
 
 if settings.DEBUG:
@@ -22,3 +23,5 @@ if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     # add media static files
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "shopify.views.page_not_found_view"

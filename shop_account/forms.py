@@ -1,6 +1,8 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.validators import MaxLengthValidator
+
+User = get_user_model()
 
 
 class LoginForm(forms.Form):
@@ -14,6 +16,8 @@ class LoginForm(forms.Form):
         is_exist = User.objects.filter(username=username).exists()
         if not is_exist:
             raise forms.ValidationError('این نام کاربری در دسترس نیست')
+
+        return username
 
 
 class RegisterForm(forms.Form):

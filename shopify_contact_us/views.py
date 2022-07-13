@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import ContactForm
-from django.views.generic import FormView , CreateView
+from django.views.generic import FormView, CreateView
 from django.urls import reverse_lazy
 
 

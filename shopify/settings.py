@@ -1,4 +1,5 @@
 import os
+import locale
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -6,7 +7,7 @@ SECRET_KEY = '%#)ymgx5-_20k9_a(1=^*j3&g7-@9)tzmb(ox82qx5qpbbl^68'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'django_seed',
     'jalali_date',
     'django_jalali',
+    'customers_feedback',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,4 @@ JALALI_DATE_DEFAULTS = {
 }
 
 AUTH_USER_MODEL = 'shop_account.Account'
+locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")

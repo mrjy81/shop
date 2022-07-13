@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import reverse
 from shop_products_category.models import ProductCategory
+import uuid
 
 
 class ProductManager(models.Manager):
@@ -17,6 +18,7 @@ class ProductManager(models.Manager):
 
 
 class Products(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True ,editable=False)
     title = models.CharField(verbose_name=_('عنوان'), max_length=150)
     description = models.TextField(_('توضیحات'))
     price = models.IntegerField(_('قیمت'))
