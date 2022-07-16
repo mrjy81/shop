@@ -11,6 +11,20 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'لطفا پسورد خو را وارد نمایید'}),
                                label='پسورد')
 
+class ResetPasswordForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder':'example@example.com'}))
+
+class ResetPasswordNewPassword(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'رمز جدید'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'تکرار رمز'}))
+
+    def clean_password2(self):
+        pass1 = self.changed_data['password']
+        pass2 = self.changed_data['password2']
+        if pass1 == pass2:
+            return pass1
+        else:
+            raise forms.ValidationError('عدم تطابق')
     def clean_username(self):
         username = self.cleaned_data['username']
         is_exist = User.objects.filter(username=username).exists()

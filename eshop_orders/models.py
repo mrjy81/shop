@@ -13,7 +13,7 @@ class Orders(models.Model):
         return self.owner.username
 
     class Meta:
-        verbose_name = 'سبد خزید'
+        verbose_name = 'سبد خرید'
         verbose_name_plural = 'سبد های کاربران'
 
 
@@ -27,5 +27,17 @@ class OrderDetail(models.Model):
         return self.order.owner.username + ' ' + self.product.title
 
     class Meta:
-        verbose_name = 'جزییات سبد خزید'
+        verbose_name = 'جزییات سبد خرید'
         verbose_name_plural = ' جزییات سبد های کاربران'
+
+
+class FinishedOrder(models.Model):
+    owner = models.ForeignKey(Orders , on_delete=models.DO_NOTHING , verbose_name='برای شخص')
+    products = models.ManyToManyField(OrderDetail, verbose_name='محصولات')
+
+    def __str__(self):
+        return self.owner.owner.username
+
+    class Meta:
+        verbose_name = 'سبد خرید تمام شده'
+        verbose_name_plural = 'سبد های خرید به پایان رسیده'

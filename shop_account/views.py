@@ -1,10 +1,50 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import RegisterForm, LoginForm
+from django.urls import reverse_lazy
+from .forms import (
+    RegisterForm,
+    LoginForm,
+    ResetPasswordForm,
+    ResetPasswordNewPassword,)
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from sessions_order.cart import Cart
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView)
+from django.contrib.messages.views import SuccessMessageMixin
 
 User = get_user_model()
+
+
+class ShopResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    """ enter email to check email"""
+
+    template_name = 'account/reset_password.html'
+    email_template_name = 'account/reset_password_email.html'
+    subject_template_name = 'account/password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('password_reset_done')
+
+
+class ShopPasswordResetDoneView(PasswordResetDoneView):
+    """ this is where say email sent to your email """
+
+    template_name = 'account/password_reset_done.html'
+
+
+class ShopPasswordResetConfirmView(PasswordResetConfirmView):
+    """ this is where you change your old password to new one """
+
+    template_name = 'account/password_reset_page.html'
+
+
+class ShopPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'account/password_reset_complete.html'
 
 
 def login_view(request):
@@ -41,7 +81,8 @@ def register_view(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             email = form.cleaned_data['email']
-            User.objects.create_user(username=username, password=password, email=email)
+            User.objects.create_user(
+                username=username, password=password, email=email)
             return redirect('login')
 
     context = {

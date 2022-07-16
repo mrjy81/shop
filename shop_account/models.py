@@ -10,6 +10,7 @@ class Account(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True ,editable=False)
     date_joined = jmodels.jDateTimeField(_('تاریخ پیوستن!!!!!!'), default=timezone.now(), blank=True, null=True)
     last_login = jmodels.jDateTimeField(_("آخرین بازدید !!!"), blank=True, null=True)
+    age = models.PositiveIntegerField(null=True , blank=True)
 
     def save(self, *args, **kwargs):
         self.last_login = timezone.now()

@@ -25,3 +25,7 @@ if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "shopify.views.page_not_found_view"
+
+admin.site.index_title = 'پنل فروشگاهی'
+admin.site.site_header = 'فروشگاه من'
+admin.site.site_title = 'محمد'

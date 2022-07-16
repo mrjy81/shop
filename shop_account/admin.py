@@ -5,4 +5,18 @@ import django_jalali.admin as jadmin
 from django_jalali.admin.filters import JDateFieldListFilter
 
 
-admin.site.register(Account, UserAdmin)
+class CustomUserAdmin(UserAdmin):
+    fieldsets = [
+        *UserAdmin.fieldsets,
+        (
+            'Additional fields',
+            {
+                'fields': (
+                    'age',
+                )
+            }
+        )
+    ]
+
+
+admin.site.register(Account, CustomUserAdmin)

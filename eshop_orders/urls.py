@@ -7,7 +7,8 @@ from .views import (
     cart_quantity_down_rg,
     cart_quantity_up_rg,
     cart_quantity_delete_rg,
-
+    send_request,
+    verify,
 )
 
 urlpatterns = [
@@ -19,4 +20,6 @@ urlpatterns = [
     path('cart_quantity_down_rg/<str:id>', cart_quantity_down_rg, name='cart_quantity_down_rg'),
     path('cart_quantity_up_rg/<uuid:id>', cart_quantity_up_rg, name='cart_quantity_up_rg'),
     path('cart_quantity_delete_rg/<uuid:id>', cart_quantity_delete_rg, name='cart_quantity_delete_rg'),
+    path('request/', send_request, name='request'),
+    path('verify/', verify, name='verify'),
 ]
